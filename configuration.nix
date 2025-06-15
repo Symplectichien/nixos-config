@@ -54,7 +54,7 @@
  users.mutableUsers = false;  
  users.users.jujube = {
      isNormalUser = true;
-     hashedPassword= "$y$j9T$btoXIJTx3euMz7hmiFXkA0$2gCWPEtJHMnlkKuFbKWc/B4dqGhuxpRzC/p3vmdnXS4";		
+     hashedPassword= "$6$Ga0j/waxtPBh0w7s$j97mI1dbgVPyEhWTReGJEvtZg0J5vSqNglp/Wc4TgdnM/3oKUcbxaDM/w4IG0LDnK9q/o39YNzPYCOKnf4VI11";		
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
        tree
