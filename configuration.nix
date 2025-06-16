@@ -10,6 +10,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/networking.nix
+      ./modules/wireguard-ui.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -93,6 +94,17 @@
     config = {
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 8222;
+    };
+  };
+
+
+  # git
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    config = {
+      user.name = "Symplectichien";
+      user.email = "juke27flan@gmail.com";
     };
   };
 

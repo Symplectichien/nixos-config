@@ -41,6 +41,15 @@ services.nginx = {
       };
     };
 
+    virtualHosts."wgui.jujube" =  {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:5012";
+      };
+    };
+
+
 };
 
 security.acme = {
@@ -48,21 +57,26 @@ security.acme = {
   defaults.email = "caca@pipi.com";
 };
 
-
-  # git
-  programs.git = {
+# vpn
+networking.nat = {
     enable = true;
-    package = pkgs.gitFull;
-    config = {
-      user.name = "Symplectichien";
-      user.email = "juke27flan@gmail.com";
-    };
+    enableIPv6 = true;
+    externalInterface = "enp2s0";
+    internalInterfaces = [ "wg0" ];
   };
+
+networking.wg-quick.interfaces.wg0.configFile = config.services.wireguard-ui.configDir + "/wg0.conf";
+
+services.wireguard-ui = {
+   enable = true;
+   port = 5012;
+}; 
+
 
 
 # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 443 80 53];
-  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedUDPPorts = [ 53 51820 ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
