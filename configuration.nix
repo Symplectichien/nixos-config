@@ -13,6 +13,7 @@
       ./modules/wireguard-ui.nix
     ];
 
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -95,6 +96,13 @@
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 8222;
     };
+  };
+
+  services.prowlarr.enable = true;
+
+  services.radarr = {
+    enable = true;
+    group = "media";
   };
 
 

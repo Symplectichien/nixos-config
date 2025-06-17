@@ -2,6 +2,7 @@
 
 {
 
+
 # Nginx et Reverse proxy
 services.nginx = {
     enable = true;
@@ -38,6 +39,7 @@ services.nginx = {
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8222";
+        
       };
     };
 
@@ -48,6 +50,25 @@ services.nginx = {
         proxyPass = "http://127.0.0.1:5012";
       };
     };
+
+    virtualHosts."prowlarr.jujube" =  {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:9696";
+          };
+        };
+
+    virtualHosts."radarr.jujube" =  {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:7878";
+          };
+        };
+    
+
+
 
 
 };
